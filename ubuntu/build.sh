@@ -8,6 +8,6 @@ docker build \
     --build-arg TORCHAUDIO_VERSION=${TORCHAUDIO_VERSION} \
     --build-arg TORCHAUDIO_VERSION_SUFFIX=${TORCHAUDIO_VERSION_SUFFIX} \
     --build-arg PYTORCH_DOWNLOAD_URL=${PYTORCH_DOWNLOAD_URL} \
-    --build-arg OPENCV_VERSION=${OPENCV_VERSION}
+    --build-arg OPENCV_VERSION=${OPENCV_VERSION} \
     -t kezh/dev-containers:${IMAGE_TAG} \
     -f ubuntu/Dockerfile \
