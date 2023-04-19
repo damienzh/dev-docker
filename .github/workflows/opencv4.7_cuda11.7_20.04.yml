@@ -13,6 +13,7 @@ on:
       - main
     paths:
       - "ubuntu/**"
+      - ".github/workflows/opencv4.7_cuda11.7_20.04.yml"
 
 jobs:
   build:
