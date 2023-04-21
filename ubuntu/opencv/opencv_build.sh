@@ -4,7 +4,7 @@ OPENCV_VERSION=$1
 echo "Opencv Version $OPENCV_VERSION"
 
 # install dependencies
-apt install -y ---no-install-recommends \
+apt install -y --no-install-recommends \
     libjpeg-dev libjpeg8-dev libjpeg-turbo8-dev libpng-dev libtiff-dev \
     libavcodec-dev libavformat-dev libswscale-dev libglew-dev \
     libgtk2.0-dev libgtk-3-dev libcanberra-gtk* \
