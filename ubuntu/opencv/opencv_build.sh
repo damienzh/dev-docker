@@ -1,6 +1,7 @@
 #!/bin/bash
 
 OPENCV_VERSION=$2
+echo "Opencv Version $OPENCV_VERSION"
 
 # install dependencies
 apt install -y --no-recommands \
