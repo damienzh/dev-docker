@@ -21,4 +21,4 @@ COPY ubuntu/opencv/opencv_install_deps.sh /tmp/opencv_install_deps.sh
 RUN ./tmp/opencv_install_deps.sh
 COPY ubuntu/opencv/opencv_build.sh /tmp/opencv_build.sh
 RUN ./tmp/opencv_build.sh ${OPENCV_VERSION}
-RUN apt clean && \ rm -rf /var/lib/apt/lists/*
+RUN apt clean && rm -rf /var/lib/apt/lists/*
