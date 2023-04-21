@@ -3,6 +3,10 @@ FROM ${BASE_IMAGE}
 
 ENV NVIDIA_DRIVER_CAPABILITIES ${NVIDIA_DRIVER_CAPABILITIES:-compute,utility}
 
+# setup TZ environment
+ENV TZ=Aisa/Shanghai
+RUN ln -snf /user/share/zoneinfo/$TZ /ect/localtime && echo $TZ > /etc/timezone
+
 RUN apt update && \
     apt install -y \
         wget curl build-essential software-properties-common \
@@ -12,5 +16,8 @@ RUN apt update && \
     rm -rf /var/lib/apt/lists/*
 
 ARG OPENCV_VERSION
-COPY ubuntu/install_opencv.sh /tmp/install_opencv.sh
-RUN ./tmp/install_opencv.sh ${OPENCV_VERSION}
+COPY ubuntu/opencv/opencv_install_deps.sh /tmp/opencv_install_deps.sh
+RUN ./tmp/opencv_install_deps.sh
+COPY ubuntu/opencv/opencv_build.sh /tmp/opencv_build.sh
+RUN ./tmp/opencv_build.sh ${OPENCV_VERSION}
+RUN apt clean && \ rm -rf /var/lib/apt/lists/*

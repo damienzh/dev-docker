@@ -1,0 +1,31 @@
+name: build opencv4.7 cuda11.7 ubuntu20.04
+
+env:
+  BASE_IMAGE: "nvidia/cuda:11.7.1-cudnn8-devel-ubuntu20.04"
+  PYTHON_VERSION: "3.8"
+  IMAGE_TAG: "cv4.6-py3.8-cuda11.7.1-ubuntu20.04"
+  PYTORCH_VERSION: "1.13.1"
+  OPENCV_VERSION: "4.6.0"
+
+on:
+  push:
+    branches: 
+      - main
+    paths:
+      - "ubuntu/**"
+      - ".github/workflows/opencv4.6_cuda11.7.1_20.04.yml"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Login Dockerhub
+        run: docker login --username=${{ secrets.DOCKER_USERNAME}} --password=${{ secrets.DOCKER_PASSWORD}}
+      
+      - name: Build image
+        run: ubuntu/build.sh
+
+      - name: Push image
+        run: docker push  
