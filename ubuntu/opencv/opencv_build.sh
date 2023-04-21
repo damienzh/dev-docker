@@ -3,25 +3,31 @@
 OPENCV_VERSION=$2
 
 # install dependencies
-sudo apt-get install -y libjpeg-dev libjpeg8-dev libjpeg-turbo8-dev libpng-dev libtiff-dev
-sudo apt-get install -y libavcodec-dev libavformat-dev libswscale-dev libglew-dev
-sudo apt-get install -y libgtk2.0-dev libgtk-3-dev libcanberra-gtk*
-sudo apt-get install -y libxvidcore-dev libx264-dev
-sudo apt-get install -y libtbb2 libtbb-dev libdc1394-22-dev libxine2-dev
-sudo apt-get install -y libv4l-dev v4l-utils qv4l2
-sudo apt-get install -y gstreamer1.0-tools libgstreamer-plugins-base1.0-dev libgstreamer-plugins-good1.0-dev
-sudo apt-get install -y libavresample-dev libvorbis-dev libtesseract-dev
-sudo apt-get install -y libfaac-dev libmp3lame-dev libtheora-dev libpostproc-dev
-sudo apt-get install -y libopencore-amrnb-dev libopencore-amrwb-dev
-sudo apt-get install -y libopenblas-dev libatlas-base-dev libblas-dev
-sudo apt-get install -y liblapack-dev liblapacke-dev libeigen3-dev gfortran
-sudo apt-get install -y libhdf5-dev protobuf-compiler
-sudo apt-get install -y libprotobuf-dev libgoogle-glog-dev libgflags-dev
+apt install -y --no-recommands \
+    libjpeg-dev libjpeg8-dev libjpeg-turbo8-dev libpng-dev libtiff-dev \
+    libavcodec-dev libavformat-dev libswscale-dev libglew-dev \
+    libgtk2.0-dev libgtk-3-dev libcanberra-gtk* \
+    libxvidcore-dev libx264-dev \
+    libtbb2 libtbb-dev libdc1394-22-dev libxine2-dev \
+    libv4l-dev v4l-utils qv4l2 \
+    gstreamer1.0-tools libgstreamer-plugins-base1.0-dev libgstreamer-plugins-good1.0-dev \
+    libavresample-dev libvorbis-dev libtesseract-dev \
+    libfaac-dev libmp3lame-dev libtheora-dev libpostproc-dev \
+    libopencore-amrnb-dev libopencore-amrwb-dev \
+    libopenblas-dev libatlas-base-dev libblas-dev \
+    liblapack-dev liblapacke-dev libeigen3-dev gfortran \
+    libhdf5-dev protobuf-compiler \
+    libprotobuf-dev libgoogle-glog-dev libgflags-dev \
+    unzip 
 
 # Download opencv and opencv_contrib source
 cd /tmp
-git clone --depth 1 --branch ${OPENCV_VERSION} https://github.com/opencv/opencv.git
-git clone --depth 1 --branch ${OPENCV_VERSION} https://github.com/opencv/opencv_contrib.git
+# git clone --depth 1 --branch ${OPENCV_VERSION} https://github.com/opencv/opencv.git
+# git clone --depth 1 --branch ${OPENCV_VERSION} https://github.com/opencv/opencv_contrib.git
+wget -O opencv.zip https://github.com/opencv/opencv/archive/${OPENCV_VERSION}.zip
+wget -O opencv_contrib.zip https://github.com/opencv/opencv_contrib/archive/${OPENCV_VERSION}.zip
+unzip opencv.zip && unzip opencv_contrib.zip
+mv opencv-${OPENCV_VERSION} opencv && mv opencv_contrib-${OPENCV_VERSION} opencv_contrib
 
 mkdir -p /tmp/build
 cd /tmp/build
@@ -62,7 +68,7 @@ cmake \
     ../opencv
 
 # build
-make
-sudo make install
+make -j$(nproc)
+make install
 rm -r /tmp/opencv && rm -r /tmp/opencv_contrib
 rm -r /tmp/build
