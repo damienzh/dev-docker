@@ -1,10 +1,18 @@
-name: build opencv4.7 cuda11.7 ubuntu20.04
+name: build opencv4.7 cuda11.7.1 ubuntu20.04
 
 env:
   BASE_IMAGE: "nvidia/cuda:11.7.1-cudnn8-devel-ubuntu20.04"
-  PYTHON_VERSION: "3.8"
   IMAGE_TAG: "cv4.7-py3.8-cuda11.7.1-ubuntu20.04"
+  PYTHON_VERSION: "3.8"
+  
   PYTORCH_VERSION: "1.13.1"
+  PYTORCH_VERSION_SUFFIX: ""
+  TORCHVISION_VERSION: ""
+  TORCHVISION_VERSION_SUFFIX: ""
+  TORCHAUDIO_VERSION: ""
+  TORCHAUDIO_VERSION_SUFFIX: ""
+  PYTORCH_DOWNLOAD_URL: ""
+  
   OPENCV_VERSION: "4.7.0"
 
 on:
@@ -13,7 +21,7 @@ on:
       - main
     paths:
       - "ubuntu/**"
-      - ".github/workflows/opencv4.7_cuda11.7_20.04.yml"
+      - ".github/workflows/opencv4.7_cuda11.7.1_20.04.yml"
 
 jobs:
   build:
