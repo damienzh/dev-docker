@@ -5,7 +5,7 @@ ENV NVIDIA_DRIVER_CAPABILITIES ${NVIDIA_DRIVER_CAPABILITIES:-compute,utility}
 
 # setup TZ environment
 ENV DEBIAN_FRONTEND=noninteractive
-ENV TZ=Aisa/Shanghai
+ENV TZ=Asia/Shanghai
 # RUN ln -snf /user/share/zoneinfo/$TZ /ect/localtime && echo $TZ > /etc/timezone
 
 RUN apt update && \
