@@ -36,4 +36,4 @@ jobs:
         run: ubuntu/build.sh
 
       - name: Push image
-        run: docker push kezh/kezh/dev-containers:${IMAGE_TAG}
+        run: docker push kezh/dev-containers:${IMAGE_TAG}
