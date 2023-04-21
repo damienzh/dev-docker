@@ -1,6 +1,6 @@
 #!/bin/bash
 
-OPENCV_VERSION=$2
+OPENCV_VERSION=$1
 echo "Opencv Version $OPENCV_VERSION"
 
 # install dependencies
