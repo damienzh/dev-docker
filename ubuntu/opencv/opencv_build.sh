@@ -24,11 +24,11 @@ apt install -y --no-recommands \
 cd /tmp
 # git clone --depth 1 --branch ${OPENCV_VERSION} https://github.com/opencv/opencv.git
 # git clone --depth 1 --branch ${OPENCV_VERSION} https://github.com/opencv/opencv_contrib.git
-wget -O opencv.zip https://github.com/opencv/opencv/archive/${OPENCV_VERSION}.zip
-wget -O opencv_contrib.zip https://github.com/opencv/opencv_contrib/archive/${OPENCV_VERSION}.zip
+wget -O opencv.zip https://github.com/opencv/opencv/archive/$OPENCV_VERSION.zip
+wget -O opencv_contrib.zip https://github.com/opencv/opencv_contrib/archive/$OPENCV_VERSION.zip
 unzip opencv.zip && unzip opencv_contrib.zip
 rm opencv.zip opencv_contrib.zip
-mv opencv-${OPENCV_VERSION} opencv && mv opencv_contrib-${OPENCV_VERSION} opencv_contrib
+mv opencv-$OPENCV_VERSION opencv && mv opencv_contrib-$OPENCV_VERSION opencv_contrib
 
 mkdir -p /tmp/build
 cd /tmp/build
@@ -42,7 +42,7 @@ cmake \
     -D BUILD_opencv_java=OFF \
     -D CMAKE_BUILD_TYPE=RELEASE \
     -D CMAKE_INSTALL_PREFIX=/usr/local \
-    -D CUDA_ARCH_BIN=${CUDA_ARCH_BIN} \
+    -D CUDA_ARCH_BIN=$CUDA_ARCH_BIN \
     -D CUDA_ARCH_PTX= \
     -D CUDA_FAST_MATH=ON \
     -D CUDNN_INCLUDE_DIR=/usr/include \
