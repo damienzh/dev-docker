@@ -1,4 +1,4 @@
-docker buildx build --platform=linux/arm64\
+docker buildx build --platform=linux/arm64 \
     --build-arg L4T_TAG=${L4T_TAG} \
     --build-arg PYTHON_VERSION=${PYTHON_VERSION} \
     --build-arg PYTORCH_VERSION=${PYTORCH_VERSION} \
