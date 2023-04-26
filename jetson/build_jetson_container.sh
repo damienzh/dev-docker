@@ -11,3 +11,4 @@ docker buildx build --platform=linux/arm64 \
     --build-arg OPENCV_VERSION=${OPENCV_VERSION} \
     -t kezh/dev-containers:${IMAGE_TAG} \
     -f jetson/Dockerfile \
+    .
