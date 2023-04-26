@@ -1,0 +1,40 @@
+name: build l4t opencv4.7 pytorch2.0 r35.2.1
+
+env:
+  LAT_TAG: "r35.2.1"
+  IMAGE_TAG: "l4t-cv4.7-pth2.0-r35.2.1"
+  PYTHON_VERSION: "3.8"
+  
+  PYTORCH_VERSION: "2.0.0"
+  PYTORCH_VERSION_SUFFIX: "l4t"
+  TORCHVISION_VERSION: "0.15.1"
+  TORCHVISION_VERSION_SUFFIX: "l4t"
+  PYTORCH_DOWNLOAD_URL: "https://developer.download.nvidia.com/compute/redist/jp/v51/pytorch/torch-2.0.0a0+8aa34602.nv23.03-cp38-cp38-linux_aarch64.whl"
+  
+  OPENCV_VERSION: "4.7.0"
+
+on:
+  push:
+    branches: 
+      - main
+    paths:
+      - "jetson/**"
+      - ".github/workflows/l4t_opencv4.7_pth2.0_r35.2.1.yml"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: setup QEMU
+        uses: docker/setup-qemu-action@v1
+
+      - name: Login Dockerhub
+        run: docker login --username=${{ secrets.DOCKER_USERNAME}} --password=${{ secrets.DOCKER_PASSWORD}}
+      
+      - name: Build image
+        run: jetson/build_jetson_container.sh
+
+      - name: Push image
+        run: docker push kezh/dev-containers:${IMAGE_TAG}
