@@ -31,22 +31,6 @@ PY=${PYTHON_VERSION//"."/""}
 TORCH_WHEEL=torch-$PYTORCH_VERSION-cp$PY-cp$PY-linux_aarch64.whl
 
 wget -O $TORCH_WHEEL $PYTORCH_DOWNLOAD_URL && \
-pip3 install $TORCH_WHEEL && \
-rm $TORCH_WHEEL
+pip3 install $TORCH_WHEEL && rm $TORCH_WHEEL &7 \
+pip3 install --no-cache-dir torchvision==$TORCHVISION_VERSION
 
-TORCH_CUDA_ARCH_LIST="5.3;6.2;7.2;8.7"
-apt-get update && \
-apt-get install -y --no-install-recommends \
-        git \
-        build-essential \
-        libjpeg-dev \
-        zlib1g-dev \
-&& rm -rf /var/lib/apt/lists/* \
-&& apt-get clean
-
-git clone https://github.com/pytorch/vision torchvision && \
-cd torchvision && \
-git checkout $TORCHVISION_VERSION && \
-python3 setup.py install && \
-cd ../ && \
-rm -rf torchvision
