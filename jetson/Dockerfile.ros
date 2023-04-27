@@ -3,12 +3,12 @@ FROM ${BASE_IMAGE}
 
 ARG ROS_DISTRO
 
-ENV ROS_DISTRO=foxy
+ENV ROS_DISTRO=${ROS_DISTRO}
 ENV ROS_ROOT=/opt/ros/${ROS_DISTRO}
 ENV ROS_PYTHON_VERSION=3
 
 COPY jetson/scripts/install_ros.sh /tmp/install_ros.sh
-RUN ./tmp/install_ros.sh
+RUN ./tmp/install_ros.sh ${ROS_DISTRO} ${ROS_ROOT} 
 
 COPY jetson/scripts/ros_entrypoint.sh /ros_entrypoint.sh
 ENTRYPOINT [ "/ros_entrypoint.sh" ]

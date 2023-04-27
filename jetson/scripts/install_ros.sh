@@ -4,6 +4,9 @@ ROS_DISTRO=$1
 ROS_ROOT=$2
 ROS_PKG=$3
 
+echo "ROS distro: $ROS_DISTRO"
+echo "ROS root: $ROS_ROOT"
+
 # 
 # add the ROS deb repo to the apt sources list
 #
@@ -71,11 +74,11 @@ apt-get install -y --no-install-recommends \
 # 
 # download/build ROS from source
 #
-mkdir -p ${ROS_ROOT}/src && \
-cd ${ROS_ROOT} && \
+mkdir -p $ROS_ROOT/src && \
+cd $ROS_ROOT && \
 
 # https://answers.ros.org/question/325245/minimal-ros2-installation/?answer=325249#post-id-325249
-rosinstall_generator --deps --rosdistro ${ROS_DISTRO} ${ROS_PKG} \
+rosinstall_generator --deps --rosdistro $ROS_DISTRO $ROS_PKG \
     launch_xml \
     launch_yaml \
     launch_testing \
