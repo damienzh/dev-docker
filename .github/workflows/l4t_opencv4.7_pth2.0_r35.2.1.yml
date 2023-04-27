@@ -12,6 +12,7 @@ env:
   PYTORCH_DOWNLOAD_URL: "https://developer.download.nvidia.com/compute/redist/jp/v51/pytorch/torch-2.0.0a0+8aa34602.nv23.03-cp38-cp38-linux_aarch64.whl"
   
   OPENCV_VERSION: "4.7.0"
+  DOCKERFILE: "Dockerfile.pytorch"
 
 on:
   push:

@@ -10,5 +10,5 @@ docker buildx build --platform=linux/arm64 \
     --build-arg PYTORCH_DOWNLOAD_URL=${PYTORCH_DOWNLOAD_URL} \
     --build-arg OPENCV_VERSION=${OPENCV_VERSION} \
     -t kezh/dev-containers:${IMAGE_TAG} \
-    -f jetson/Dockerfile \
+    -f jetson/${DOCKERFILE} \
     .
