@@ -5,6 +5,11 @@ TORCHVISION_VERSION_SUFFIX=$4
 PYTORCH_DOWNLOAD_URL=$5
 PYTHON_VERSION=$6
 
+echo "pytorch installation"
+echo "torch: $PYTORCH_VERSION, torchvision: $TORCHVISION_VERSION, python: $PYTHON_VERSION"
+echo "torch wheel url: $PYTORCH_DOWNLOAD_URL"
+echo "torch suffix: $PYTORCH_VERSION_SUFFIX, torchvision suffix: $TORCHVISION_VERSION_SUFFIX"
+
 apt-get update && \
 apt-get install -y --no-install-recommends \
         python3-pip \
