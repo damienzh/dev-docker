@@ -31,6 +31,6 @@ PY=${PYTHON_VERSION//"."/""}
 TORCH_WHEEL=torch-$PYTORCH_VERSION-cp$PY-cp$PY-linux_aarch64.whl
 
 wget -O $TORCH_WHEEL $PYTORCH_DOWNLOAD_URL && \
-pip3 install $TORCH_WHEEL && rm $TORCH_WHEEL &7 \
+pip3 install $TORCH_WHEEL && rm $TORCH_WHEEL && \
 pip3 install --no-cache-dir torchvision==$TORCHVISION_VERSION
 
