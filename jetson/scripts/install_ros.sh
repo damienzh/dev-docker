@@ -1,5 +1,9 @@
 #!/bin/bash
 
+ROS_DISTRO=$1
+ROS_ROOT=$2
+ROS_PKG=$3
+
 # 
 # add the ROS deb repo to the apt sources list
 #
@@ -91,23 +95,23 @@ rosinstall_generator --deps --rosdistro ${ROS_DISTRO} ${ROS_PKG} \
     compressed_image_transport \
     compressed_depth_image_transport \
     rosbridgesuite \
-    > ros2.${ROS_DISTRO}.${ROS_PKG}.rosinstall && \
-cat ros2.${ROS_DISTRO}.${ROS_PKG}.rosinstall && \
-vcs import src < ros2.${ROS_DISTRO}.${ROS_PKG}.rosinstall && \
+    > ros2.$ROS_DISTRO.$ROS_PKG.rosinstall && \
+cat ros2.$ROS_DISTRO.$ROS_PKG.rosinstall && \
+vcs import src < ros2.$ROS_DISTRO.$ROS_PKG.rosinstall && \
 
 # https://github.com/dusty-nv/jetson-containers/issues/181
-rm -r ${ROS_ROOT}/src/ament_cmake && \
-git -C ${ROS_ROOT}/src/ clone https://github.com/ament/ament_cmake -b ${ROS_DISTRO} && \
+rm -r $ROS_ROOT/src/ament_cmake && \
+git -C $ROS_ROOT/src/ clone https://github.com/ament/ament_cmake -b $ROS_DISTRO && \
 
 # install dependencies using rosdep
 apt-get update && \
-cd ${ROS_ROOT} && \
+cd $ROS_ROOT && \
 rosdep init && \
 rosdep update && \
 rosdep install -y \
     --ignore-src \
     --from-paths src \
-    --rosdistro ${ROS_DISTRO} \
+    --rosdistro $ROS_DISTRO \
     --skip-keys "libopencv-dev libopencv-contrib-dev libopencv-imgproc-dev python-opencv python3-opencv" && \
 rm -rf /var/lib/apt/lists/* && \
 apt-get clean && \
@@ -118,7 +122,7 @@ colcon build \
     --cmake-args -DCMAKE_BUILD_TYPE=Release && \
 
 # remove build files
-rm -rf ${ROS_ROOT}/src && \
-rm -rf ${ROS_ROOT}/logs && \
-rm -rf ${ROS_ROOT}/build && \
-rm ${ROS_ROOT}/*.rosinstall
+rm -rf $ROS_ROOT/src && \
+rm -rf $ROS_ROOT/logs && \
+rm -rf $ROS_ROOT/build && \
+rm $ROS_ROOT/*.rosinstall
