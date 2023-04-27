@@ -7,7 +7,7 @@ env:
   
   PYTORCH_VERSION: "2.0.0"
   PYTORCH_VERSION_SUFFIX: "l4t"
-  TORCHVISION_VERSION: "0.15.1"
+  TORCHVISION_VERSION: "release/0.15"
   TORCHVISION_VERSION_SUFFIX: "l4t"
   PYTORCH_DOWNLOAD_URL: "https://developer.download.nvidia.com/compute/redist/jp/v51/pytorch/torch-2.0.0a0+8aa34602.nv23.03-cp38-cp38-linux_aarch64.whl"
   
