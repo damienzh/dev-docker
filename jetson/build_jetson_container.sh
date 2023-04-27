@@ -7,6 +7,7 @@ docker buildx build --platform=linux/arm64 \
     --build-arg TORCHVISION_VERSION_SUFFIX=${TORCHVISION_VERSION_SUFFIX} \
     --build-arg PYTORCH_DOWNLOAD_URL=${PYTORCH_DOWNLOAD_URL} \
     --build-arg OPENCV_VERSION=${OPENCV_VERSION} \
+    --build-arg ROS_DISTRO=${ROS_DISTRO} \
     -t kezh/dev-containers:${IMAGE_TAG} \
     -f jetson/${DOCKERFILE} \
     .

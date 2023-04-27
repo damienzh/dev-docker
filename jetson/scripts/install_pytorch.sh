@@ -33,8 +33,12 @@ TORCH_WHEEL=torch-$PYTORCH_VERSION-cp$PY-cp$PY-linux_aarch64.whl
 wget -O $TORCH_WHEEL $PYTORCH_DOWNLOAD_URL && \
 pip3 install $TORCH_WHEEL && rm $TORCH_WHEEL
 
+# patch torch
+
+
 apt install libjpeg-dev zlib1g-dev libpython3-dev libavcodec-dev libavformat-dev libswscale-dev
-git clone --branch $TORCHVISION_VERSION_SUFFIX https://github.com/pytorch/vision torchvision   # see below for version of torchvision to download
+pip install --no-cache-dir requests pillow  # install torchvision requirements
+git clone https://github.com/pytorch/vision torchvision   # see below for version of torchvision to download
 cd torchvision
 export BUILD_VERSION=$TORCHVISION_VERSION  # where 0.x.0 is the torchvision version  
 python3 setup.py install

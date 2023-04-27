@@ -10,14 +10,19 @@ ARG PYTORCH_VERSION_SUFFIX
 ARG TORCHVISION_VERSION
 ARG TORCHVISION_VERSION_SUFFIX
 ARG PYTORCH_DOWNLOAD_URL
+ARG OPENCV_VERSION
+
+# setup TZ environment
+ENV DEBIAN_FRONTEND=noninteractive
+ENV TZ=Asia/Shanghai
 
 #
 # Install PyTorch and torchvision
 #
-COPY jetson/scripts/install_pytorch.sh /tmp/install_pytorch.sh
-RUN ./tmp/install_pytorch.sh ${PYTORCH_VERSION} ${PYTORCH_VERSION_SUFFIX} \
-    ${TORCHVISION_VERSION} ${TORCHVISION_VERSION_SUFFIX} \
-    ${PYTORCH_DOWNLOAD_URL} ${PYTHON_VERSION}
+COPY jetson/scripts/opencv_install_deps.sh /tmp/opencv_install_deps.sh
+RUN ./tmp/opencv_install_deps.sh
+COPY jetson/scripts/opencv_build.sh /tmp/opencv_build.sh
+RUN ./tmp/opencv_build.sh ${OPENCV_VERSION}
 
 #Update libraries
 RUN ldconfig 
