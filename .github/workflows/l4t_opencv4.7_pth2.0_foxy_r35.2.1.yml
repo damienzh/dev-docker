@@ -13,6 +13,7 @@ env:
   
   OPENCV_VERSION: "4.7.0"
   DOCKERFILE: "Dockerfile.ros"
+  ROS_DISTRO: "foxy"
 
 on:
   push:

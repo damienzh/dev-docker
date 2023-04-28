@@ -67,7 +67,7 @@ apt-get install -y --no-install-recommends \
         ca-certificates \
         gnupg \
         lsb-release \
-        yaml-cpp \
+        libyaml-cpp-dev \
 && rm -rf /var/lib/apt/lists/* \
 && apt-get clean
 
