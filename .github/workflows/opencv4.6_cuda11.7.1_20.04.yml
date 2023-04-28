@@ -14,13 +14,14 @@ env:
   PYTORCH_DOWNLOAD_URL: ""
   
   OPENCV_VERSION: "4.6.0"
+  DOCKERFILE: "Dockerfile.opencv"
 
 on:
   push:
     branches: 
       - main
     paths:
-      - "ubuntu/**"
+      - "ubuntu/opencv/**"
       - ".github/workflows/opencv4.6_cuda11.7.1_20.04.yml"
 
 jobs:

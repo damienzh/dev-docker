@@ -9,6 +9,8 @@ docker build \
     --build-arg TORCHAUDIO_VERSION_SUFFIX=${TORCHAUDIO_VERSION_SUFFIX} \
     --build-arg PYTORCH_DOWNLOAD_URL=${PYTORCH_DOWNLOAD_URL} \
     --build-arg OPENCV_VERSION=${OPENCV_VERSION} \
+    --build-arg ROS_DISTRO=${ROS_DISTRO} \
+    --build-arg ROS_PKG=${ROS_PKG} \
     -t kezh/dev-containers:${IMAGE_TAG} \
-    -f ubuntu/Dockerfile \
+    -f ubuntu/${DOCKERFILE} \
     .
