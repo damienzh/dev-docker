@@ -1,0 +1,41 @@
+name: build mmlabv2 torch2.0 opencv4.7 cuda11.7.1 ubuntu20.04
+
+env:
+  BASE_IMAGE: "kezh/dev-containers:cv4.7-py3.8-cuda11.7.1-ubuntu20.04"
+  IMAGE_TAG: "mmlabv2-cv4.7-py3.8-cuda11.7.1-ubuntu20.04"
+  PYTHON_VERSION: "3.8"
+  
+  PYTORCH_VERSION: "2.0.1"
+  PYTORCH_VERSION_SUFFIX: ""
+  TORCHVISION_VERSION: ""
+  TORCHVISION_VERSION_SUFFIX: ""
+  TORCHAUDIO_VERSION: ""
+  TORCHAUDIO_VERSION_SUFFIX: ""
+  PYTORCH_DOWNLOAD_URL: ""
+  
+  OPENCV_VERSION: "4.7.0"
+  DOCKERFILE: "Dockerfile.mmlabv2"
+  ROS_DISTRO: "foxy"
+  ROS_PKG: "ros_base"
+on:
+  push:
+    branches: 
+      - main
+    paths:
+      - "ubuntu/Dockerfile.mmlabv2"
+      - ".github/workflows/mmlabv2_torch2.0_cuda11.7.1_20.04.yml"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Login Dockerhub
+        run: docker login --username=${{ secrets.DOCKER_USERNAME}} --password=${{ secrets.DOCKER_PASSWORD}}
+      
+      - name: Build image
+        run: ubuntu/build.sh
+
+      - name: Push image
+        run: docker push kezh/dev-containers:${IMAGE_TAG}
