@@ -1,5 +1,5 @@
 ARG BASE_IMAGE
-FROM {BASE_IMAGE}
+FROM ${BASE_IMAGE}
 
 # setup TZ environment
 ENV DEBIAN_FRONTEND=noninteractive
@@ -20,26 +20,26 @@ ARG MMACTION_REPO=https://github.com/open-mmlab/mmaction2.git
 RUN mkdir /mmlab
 
 RUN cd /mmlab && \
-    git clone {MMENGINE_REPO} && \
+    git clone ${MMENGINE_REPO} && \
     cd mmengine && \
     pip3 install -e . 
 
 RUN cd /mmlab && \
-    git clone {MMCV_REPO} && \
+    git clone ${MMCV_REPO} && \
     cd mmcv && \
     pip3 install -e . 
 
 RUN cd /mmlab && \
-    git clone {MMDET_REPO} && \
+    git clone ${MMDET_REPO} && \
     cd mmdetection && \
     pip3 install -e . 
 
 RUN cd /mmlab && \
-    git clone {MMPOSE_REPO} && \
+    git clone ${MMPOSE_REPO} && \
     cd mmpose && \
     pip3 install -e . 
 
 RUN cd /mmlab && \
-    git clone {MMACTION_REPO} && \
+    git clone ${MMACTION_REPO} && \
     cd mmaction2 && \
     pip3 install -e . 
